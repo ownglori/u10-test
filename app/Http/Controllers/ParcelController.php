@@ -7,15 +7,15 @@ use App\Http\Requests\ParcelRequest;
 
 class ParcelController extends Controller
 {
-    private ParcelService $orderService;
+    private ParcelService $parcelService;
 
-    public function __construct(ParcelService $orderService)
+    public function __construct(ParcelService $parcelService)
     {
-        $this->orderService = $orderService;
+        $this->parcelService = $parcelService;
     }
 
     public function create(ParcelRequest $request)
     {
-        return $this->orderService->create($request);
+        return $this->parcelService->create($request);
     }
 }
