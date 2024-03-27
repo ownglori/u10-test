@@ -133,3 +133,35 @@ class UkrPostService extends Service
 }
 ```
 
+### Додавання нового сервісу пошти
+
+1. Створити сервіс (клас `PHP` за шляхом `app/Services`)
+
+```php
+class NewService extends Service
+{
+    public function create($validated): JsonResponse
+    {
+        // create function
+    }
+}
+```
+
+2. Додати створений сервіс у поштовому сервісі (`PostService.php`)
+
+```php
+class PostService extends Service
+{
+    public function __construct(NovaPostService $novaPostService, UkrPostService $ukrPostService, NewService $newService)
+    {
+        $this->postServices = [
+            'novapost' => $novaPostService,
+            'ukrpost' => $ukrPostService,
+            
+            // add new service here
+            
+            'new' => $newService,
+        ];
+    }
+}
+```
